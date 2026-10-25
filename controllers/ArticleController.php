@@ -31,6 +31,9 @@ class ArticleController
             throw new Exception("L'article demandé n'existe pas.");
         }
 
+        // logique views
+        $articleManager->incrementViewCount($article);
+
         $commentManager = new CommentManager();
         $comments = $commentManager->getAllCommentsByArticleId($id);
 

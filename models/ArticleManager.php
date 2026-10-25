@@ -81,6 +81,12 @@ class ArticleManager extends AbstractEntityManager
             'id' => $article->getId()
         ]);
     }
+    
+    public function incrementViewCount(Article $article) : void
+    {
+        $sql = "UPDATE article SET views = views + 1 WHERE id = :id";
+        $this->db->query($sql, ['id' => $article->getId()]);
+    }
 
     /**
      * Supprime un article.
