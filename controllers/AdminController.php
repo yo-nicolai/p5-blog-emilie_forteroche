@@ -172,7 +172,7 @@ class AdminController
 
         // On récupère les articles.
         $articleManager = new ArticleManager();
-        $articles = $articleManager->getAllArticles();
+        $articles = $articleManager->getArticlesStats();
 
         // On affiche la page de monitoring.
         $view = new View("Monitoring");

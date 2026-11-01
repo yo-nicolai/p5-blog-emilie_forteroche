@@ -6,6 +6,7 @@
                 <th>Titre</th>
                 <th>Vues</th>
                 <th>Date de publication</th>
+                <th>commentaires</th>
             </tr>
         </thead>
         <tbody>
@@ -14,6 +15,7 @@
                     <td><?= $article->getTitle() ?></td>
                     <td><?= $article->getViews() ?></td>
                     <td><?= ucfirst(Utils::convertDateToFrenchFormat($article->getDateCreation())) ?></td>
+                    <td><?= $article->getNbComments() ?></td>
                 </tr>
             <?php } ?>
         </tbody>
