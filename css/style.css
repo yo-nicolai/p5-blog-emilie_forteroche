@@ -363,3 +363,40 @@ footer {
     color: white;
     background-color: var(--headerColor);
 }
+
+
+/**
+* Page Monitoring
+*/
+.monitoring {
+    width: 100%;
+}
+
+.monitoring th {
+    background-color: var(--headerColor);
+    color: white;
+    padding: 10px;
+}
+
+.monitoring td {
+    padding: 5px;
+}
+
+.monitoring tbody tr:nth-child(odd) {
+    background-color: var(--headerPaleColor);
+}
+
+.monitoring table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--quoteColor);
+}
+
+.monitoring .tableTextAlignLeft {
+    text-align: start;
+    padding-left: 5px;
+}
+
+.monitoring .tableContentCenter {
+    text-align: center;
+}
