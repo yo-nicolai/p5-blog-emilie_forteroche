@@ -170,14 +170,21 @@ class AdminController
         // On vérifie que l'utilisateur est connecté.
         $this->checkIfUserIsConnected();
 
+        $colonne = Utils::request('colonne', 'date');
+        $tri = Utils::request('tri', 'decroissant');
+
+
+
         // On récupère les articles.
         $articleManager = new ArticleManager();
-        $articles = $articleManager->getArticlesStats();
+        $articles = $articleManager->getArticlesStats($colonne, $tri);
 
         // On affiche la page de monitoring.
         $view = new View("Monitoring");
         $view->render("monitoring", [
-            'articles' => $articles
+            'articles' => $articles,
+            'colonne' => $colonne,
+            'tri' => $tri
         ]);
     }
 

@@ -1,12 +1,38 @@
+<?php
+if ($colonne === 'title' && $tri === 'decroissant') {
+    $triTitle = 'croissant';
+} else {
+    $triTitle = 'decroissant';
+}
+
+if ($colonne === 'views' && $tri === 'decroissant') {
+    $triVues = 'croissant';
+} else {
+    $triVues = 'decroissant';
+}
+
+if ($colonne === 'date' && $tri === 'decroissant') {
+    $triDate = 'croissant';
+} else {
+    $triDate = 'decroissant';
+}
+
+if ($colonne === 'comment' && $tri === 'decroissant') {
+    $triComment = 'croissant';
+} else {
+    $triComment = 'decroissant';
+}
+?>
+
 <div class="monitoring">
     <h2>Statistiques des articles</h2>
     <table>
         <thead>
             <tr>
-                <th class="tableTextAlignLeft">Titre</th>
-                <th class="tableContentCenter">Vues</th>
-                <th class="tableContentCenter">Date de publication</th>
-                <th class="tableContentCenter">Commentaires</th>
+                <th class="tableTextAlignLeft"><a href="index.php?action=monitoring&colonne=title&tri=<?= $triTitle ?>">Titre</a></th>
+                <th class="tableContentCenter"><a href="index.php?action=monitoring&colonne=views&tri=<?= $triVues ?>">Vues</a></th>
+                <th class="tableContentCenter"><a href="index.php?action=monitoring&colonne=date&tri=<?= $triDate ?>">Date de publication</a></th>
+                <th class="tableContentCenter"><a href="index.php?action=monitoring&colonne=comment&tri=<?= $triComment ?>">Commentaires</a></th>
             </tr>
         </thead>
         <tbody>
