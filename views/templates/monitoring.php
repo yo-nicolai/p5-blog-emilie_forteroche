@@ -1,4 +1,12 @@
 <?php
+
+/**
+ * Page de monitoring : tableau des articles avec leurs statistiques.
+ * @var Article[] $articles
+ * @var string $colonne
+ * @var string $tri
+ */
+
 if ($colonne === 'title' && $tri === 'decroissant') {
     $triTitle = 'croissant';
 } else {
@@ -45,10 +53,5 @@ if ($colonne === 'comment' && $tri === 'decroissant') {
                 </tr>
             <?php } ?>
         </tbody>
-
     </table>
-
-
-
-
 </div>

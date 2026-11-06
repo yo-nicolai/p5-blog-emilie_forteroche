@@ -29,7 +29,7 @@ class ArticleController
         
         if (!$article) {
             throw new Exception("L'article demandé n'existe pas.");
-        }
+        } 
 
         // logique views
         $articleManager->incrementViewCount($article);

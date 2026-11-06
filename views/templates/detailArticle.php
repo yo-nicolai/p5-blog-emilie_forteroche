@@ -1,8 +1,11 @@
 <?php
-    /**
-     * Ce template affiche un article et ses commentaires.
-     * Il affiche également un formulaire pour ajouter un commentaire.
-     */
+
+/**
+ * Ce template affiche un article et ses commentaires.
+ * Il affiche également un formulaire pour ajouter un commentaire.
+ * @var Article $article
+ * @var Comment[] $comments
+ */
 ?>
 
 <article class="mainArticle">
