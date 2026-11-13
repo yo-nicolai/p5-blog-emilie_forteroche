@@ -5,6 +5,7 @@
  * @var Article[] $articles
  * @var string $colonne
  * @var string $tri
+ * @var string $fleche
  */
 
 if ($colonne === 'title' && $tri === 'decroissant') {
@@ -30,6 +31,12 @@ if ($colonne === 'comment' && $tri === 'decroissant') {
 } else {
     $triComment = 'decroissant';
 }
+
+if ($tri === 'decroissant') {
+    $fleche = '▼';
+} else {
+    $fleche = '▲';
+}
 ?>
 
 <div class="monitoring">
@@ -37,10 +44,30 @@ if ($colonne === 'comment' && $tri === 'decroissant') {
     <table>
         <thead>
             <tr>
-                <th class="tableTextAlignLeft"><a href="index.php?action=monitoring&colonne=title&tri=<?= $triTitle ?>">Titre</a></th>
-                <th class="tableContentCenter"><a href="index.php?action=monitoring&colonne=views&tri=<?= $triVues ?>">Vues</a></th>
-                <th class="tableContentCenter"><a href="index.php?action=monitoring&colonne=date&tri=<?= $triDate ?>">Date de publication</a></th>
-                <th class="tableContentCenter"><a href="index.php?action=monitoring&colonne=comment&tri=<?= $triComment ?>">Commentaires</a></th>
+                <th class="tableTextAlignLeft">
+                    <a href="index.php?action=monitoring&colonne=title&tri=<?= $triTitle ?>">
+                        Titre <?php if ($colonne === 'title') {
+                                    echo $fleche;
+                                } ?></a>
+                </th>
+                <th class="tableContentCenter">
+                    <a href="index.php?action=monitoring&colonne=views&tri=<?= $triVues ?>">
+                        Vues <?php if ($colonne === 'views') {
+                                    echo $fleche;
+                                } ?></a>
+                </th>
+                <th class="tableContentCenter">
+                    <a href="index.php?action=monitoring&colonne=date&tri=<?= $triDate ?>">
+                        Date de publication <?php if ($colonne === 'date') {
+                                                echo $fleche;
+                                            } ?></a>
+                </th>
+                <th class="tableContentCenter">
+                    <a href="index.php?action=monitoring&colonne=comment&tri=<?= $triComment ?>">
+                        Commentaires <?php if ($colonne === 'comment') {
+                                            echo $fleche;
+                                        } ?></a>
+                </th>
             </tr>
         </thead>
         <tbody>
