@@ -166,18 +166,34 @@ class AdminController
      */
     public function showMonitoring(): void
     {
-
         // On vérifie que l'utilisateur est connecté.
         $this->checkIfUserIsConnected();
 
         $colonne = Utils::request('colonne', 'date');
         $tri = Utils::request('tri', 'decroissant');
 
-
-
         // On récupère les articles.
         $articleManager = new ArticleManager();
-        $articles = $articleManager->getArticlesStats($colonne, $tri);
+        $articles = $articleManager->getArticlesStats();
+
+        // On trie les articles en php selon la colonne choisie.
+        usort($articles, function ($a, $b) use ($colonne) {
+            if ($colonne === 'title') {
+                return $a->getTitle() <=> $b->getTitle();
+            }
+            if ($colonne === 'views') {
+                return $a->getViews() <=> $b->getViews();
+            }
+            if ($colonne === 'comment') {
+                return $a->getNbComments() <=> $b->getNbComments();
+            }
+            return $a->getDateCreation() <=> $b->getDateCreation();
+        });
+
+        // usort trie en croissant par défaut, donv reverse pour décroissant.
+        if ($tri !== 'croissant') {
+            $articles = array_reverse($articles);
+        }
 
         // On affiche la page de monitoring.
         $view = new View("Monitoring");

@@ -24,25 +24,10 @@ class ArticleManager extends AbstractEntityManager
     /**
      * Récupère les articles avec leurs stats 
      */
-    public function getArticlesStats(string $colonne, string $tri): array
+    public function getArticlesStats(): array
     {
-        $tableColonne = [
-            'date' => 'date_creation',
-            'views' => 'views',
-            'title' => 'title',
-            'comment' => 'nb_comments'
-        ];
-
-        $tableTri = [
-            'decroissant' => 'DESC',
-            'croissant' => 'ASC'
-        ];
-
-        $colonneSql = $tableColonne[$colonne] ?? $tableColonne['date'];
-        $triSql = $tableTri[$tri] ?? $tableTri['decroissant'];
-
         $sql = "SELECT article.*,COUNT(comment.id) as nb_comments FROM article LEFT JOIN comment 
-                ON comment.id_article = article.id GROUP BY  article.id ORDER BY $colonneSql $triSql ";
+                ON comment.id_article = article.id GROUP BY  article.id ";
         $result = $this->db->query($sql);
         $articles = [];
 
