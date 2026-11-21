@@ -27,20 +27,32 @@
     if (empty($comments)) {
         echo '<p class="info">Aucun commentaire pour cet article.</p>';
     } else {
+        // Si Emilie est connectée, on ouvre le formulaire de suppression.
+        if (isset($_SESSION['user'])) {
+            echo '<form action="index.php" method="post">';
+            echo '<input type="hidden" name="action" value="deleteComment">';
+            echo '<input type="hidden" name="idArticle" value="' . $article->getId() . '">';
+        }
         echo '<ul>';
         foreach ($comments as $comment) {
             echo '<li>';
+            // Une case à cocher par commentaire, à gauche du smiley.
+            if (isset($_SESSION['user'])) {
+                echo '<input type="checkbox" class="commentCheckbox" name="ids[]" value="' . $comment->getId() . '">';
+            }
             echo '  <div class="smiley">☻</div>';
             echo '  <div class="detailComment">';
             echo '      <h3 class="info">Le ' . Utils::convertDateToFrenchFormat($comment->getDateCreation()) . ", " . Utils::format($comment->getPseudo()) . ' a écrit :</h3>';
             echo '      <p class="content">' . Utils::format($comment->getContent()) . '</p>';
-            if (isset($_SESSION['user'])) {
-                echo '<a href="index.php?action=deleteComment&id=' . $comment->getId() . '" ' . Utils::askConfirmation("Êtes-vous sûr de vouloir supprimer ce commentaire ?") . ' title="Supprimez le commentaire" class="deleteCommentButton">x</a>';
-            }
             echo '  </div>';
             echo '</li>';
         }
         echo '</ul>';
+        // Un seul bouton pour tout supprimer, puis on ferme le formulaire.
+        if (isset($_SESSION['user'])) {
+            echo '<button class="deleteCommentButton" ' . Utils::askConfirmation("Supprimer les commentaires sélectionnés ?") . '>Supprimer la sélection</button>';
+            echo '</form>';
+        }
     }
     ?>
 

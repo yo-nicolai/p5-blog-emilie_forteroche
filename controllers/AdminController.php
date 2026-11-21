@@ -204,26 +204,26 @@ class AdminController
         ]);
     }
 
-    //Suppression d'un commentaire
+
+    // Suppression d'un ou plusieurs comments
     public function deleteComment(): void
     {
         $this->checkIfUserIsConnected();
 
-        $id = Utils::request("id", -1);
+        // On récupère le tableau des id cochés
+        $ids = Utils::request("ids", []);
+        $idArticle = Utils::request("idArticle", -1);
 
-
-        //on supprime le commentaire
-        $commentManager = new CommentManager();
-        $comment = $commentManager->getCommentById($id);
-
-        if (!$comment) {
-            throw new Exception("Le commentaire demandé n'existe pas.");
+        if (empty($ids)) {
+            throw new Exception("Aucun commentaire sélectionné.");
         }
 
-        $commentManager->deleteComment($comment);
+        // On supprime les commentaires cochés
+        $commentManager = new CommentManager();
+        $commentManager->deleteComment($ids);
 
-        //renvoi vers la page de l'article d'origine
-        Utils::redirect("showArticle", ['id' => $comment->getIdArticle()]);
+        // On revient sur la page de l'article
+        Utils::redirect("showArticle", ['id' => $idArticle]);
     }
 
 
